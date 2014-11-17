@@ -1,12 +1,13 @@
 package com.mechanitis.demo.coffee;
 
 import com.mongodb.MongoClient;
-import com.yammer.dropwizard.Service;
-import com.yammer.dropwizard.assets.AssetsBundle;
-import com.yammer.dropwizard.config.Bootstrap;
-import com.yammer.dropwizard.config.Environment;
 
-public class CoffeeShopService extends Service<CoffeeShopConfiguration> {
+import io.dropwizard.Application;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import io.dropwizard.assets.AssetsBundle;
+
+public class CoffeeShopService extends Application<CoffeeShopConfiguration> {
     public static void main(String[] args) throws Exception {
         new CoffeeShopService().run(args);
     }
@@ -20,7 +21,8 @@ public class CoffeeShopService extends Service<CoffeeShopConfiguration> {
     @Override
     public void run(final CoffeeShopConfiguration configuration, final Environment environment) throws Exception {
         MongoClient mongoClient = new MongoClient();
-        environment.manage(new MongoClientManager(mongoClient));
-        environment.addResource(new CoffeeShopResource(mongoClient));
+        environment.lifecycle().manage(new MongoClientManager(mongoClient));
+        environment.jersey().register(new CoffeeShopResource(mongoClient));
     }
+
 }

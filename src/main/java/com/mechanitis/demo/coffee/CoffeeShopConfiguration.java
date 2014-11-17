@@ -1,6 +1,6 @@
 package com.mechanitis.demo.coffee;
 
-import com.yammer.dropwizard.config.Configuration;
+import io.dropwizard.Configuration;
 
 public class CoffeeShopConfiguration extends Configuration {
 }

@@ -1,8 +1,7 @@
 package com.mechanitis.demo.coffee;
 
 import com.mongodb.MongoClient;
-import com.yammer.dropwizard.lifecycle.Managed;
-import org.eclipse.jetty.util.component.LifeCycle;
+import io.dropwizard.lifecycle.Managed;
 
 public class MongoClientManager implements Managed {
     private final MongoClient mongoClient;
@@ -11,13 +10,13 @@ public class MongoClientManager implements Managed {
         this.mongoClient = mongoClient;
     }
 
-    @Override
-    public void start() throws Exception {
-        
-    }
+	public void start() throws Exception {
+		
+	}
 
-    @Override
-    public void stop() throws Exception {
-        mongoClient.close();
-    }
+	public void stop() throws Exception {
+		mongoClient.close();
+	}
+
+
 }

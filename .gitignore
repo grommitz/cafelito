@@ -2,3 +2,7 @@
 *.iml
 out/
 build/
+/target
+.classpath
+.project
+.settings/
